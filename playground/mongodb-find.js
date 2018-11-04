@@ -15,13 +15,12 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err , client) => {
   //   console.log('Unable to fetch todos', err);
   // });
 
-  db.collection('Users').find({name:'Vaishali Sharma'}).toArray().then((docs) => {
+  db.collection('Users').find({name:'Jagdish Sharma'}).toArray().then((docs) => {
     console.log('Users');
     console.log(JSON.stringify(docs, undefined, 2));
   }, (err) => {
     console.log('Unable to fetch users', err);
   });
 
-/*hello*/
   //client.close();
 });
