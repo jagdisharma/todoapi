@@ -11,6 +11,7 @@ var app = express();
 
 app.use(bodyParser.json());
 
+//Insert into todo
 app.post('/todos', (req, res)=> {
   var todo = new Todo({
     text : req.body.text
@@ -23,6 +24,7 @@ app.post('/todos', (req, res)=> {
   })
 });
 
+//FindAll todos
 app.get('/todos', (req, res) =>{
   Todo.find().then( (todos) => {
     //console.log('Inside response');
@@ -33,9 +35,10 @@ app.get('/todos', (req, res) =>{
   });
 });
 
+//find todo by id
 app.get('/todos/:id', (req, res) => {
   var id = req.params.id;
-  //res.send(req.params);
+
   if(!ObjectID.isValid(id)){
     return res.status(404).send();
   }
@@ -47,6 +50,24 @@ app.get('/todos/:id', (req, res) => {
     res.send({todo});
   }, (e) => {
     res.status(400).send(e);
+  });
+});
+
+//Delete todo by id
+app.delete('/todos/:id', (req, res) => {
+  var id = req.params.id;
+
+  if(!ObjectID.isValid(id)){
+    return res.status(404).send();
+  }
+
+  Todo.findByIdAndRemove(id).then((todo) => {
+    if(!todo){
+      return res.status(404).send();
+    }
+    res.status(200).send({todo});
+  }, (e) => {
+    res.status(404).send();
   });
 });
 
