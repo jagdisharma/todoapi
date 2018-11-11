@@ -6,8 +6,8 @@ mongoose.Promise = global.Promise;
 //   localhost: 'mongodb://localhost:27017/TodoApp',
 // };
 //mongoose.connect(process.env.PORT ? db.mlab : db.localhost);
-var mongouri = process.env.MONGODB_URI ;
-console.log('mongouri------------------------------------------------>',mongouri);
+// var mongouri = process.env.MONGODB_URI ;
+// console.log('mongouri------------------------------------------------>',mongouri);
 mongoose.connect(process.env.MONGODB_URI );
 
 module.export = {
